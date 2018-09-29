@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:element name="app">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="owner" type="emailList">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            For the non-first git-hub pull request, only the users in this list can be accepted.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="packageName" type="xsd:string" />
+                <xsd:element name="displayName" type="stringByLangList" />
+                <xsd:element name="category" type="category" />
+                <xsd:element name="introduction" type="stringByLangList" />
+                <xsd:element name="brief" type="stringByLangList" />
+                <xsd:element name="keyword" type="stringByLangList" />
+                <xsd:element name="snapshotList" type="urlListByLangList" />
+                <xsd:element name="videoList" type="urlListByLangList" minOccurs="0" maxOccurs="1" />
+                <xsd:element name="updateLog" type="stringByLangList" />
+                <xsd:element name="pulisherName" type="stringByLangList" />
+                <xsd:element name="website" type="xsd:string" />
+                <xsd:element name="deviceType" type="deviceType" />
+                <xsd:element name="regionList" type="regionList" />
+                <xsd:element name="onlineApkList" type="apkList" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:simpleType name="region">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[a-zA-Z]{2}" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="lang">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[_0-9a-zA-Z]{2,5}" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="email">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[^@]+@[^\.]+\..+" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="regionList">
+        <xsd:list itemType="region" />
+    </xsd:simpleType>
+
+    <xsd:simpleType name="emailList">
+        <xsd:list itemType="email" />
+    </xsd:simpleType>
+
+    <xsd:complexType name="stringByLangList">
+        <xsd:sequence>
+            <xsd:element name="stringByLang" minOccurs="1" maxOccurs="unbounded">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="lang" type="lang" />
+                        <xsd:element name="text" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="urlListByLangList">
+        <xsd:sequence>
+            <xsd:element name="urlListByLang">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="lang" type="lang" />
+                        <xsd:element name="text">
+                            <xsd:simpleType>
+                                <xsd:list itemType="xsd:anyURI" />
+                            </xsd:simpleType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="deviceType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Phone" />
+            <xsd:enumeration value="Pad" />
+            <xsd:enumeration value="PhoneAndPad" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="category">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="App-Android Wear" />
+            <xsd:enumeration value="App-Art &amp; Design" />
+            <xsd:enumeration value="App-Auto &amp; Vehicles" />
+            <xsd:enumeration value="App-Beauty" />
+            <xsd:enumeration value="App-Books &amp; Reference" />
+            <xsd:enumeration value="App-Business" />
+            <xsd:enumeration value="App-Comics" />
+            <xsd:enumeration value="App-Communication" />
+            <xsd:enumeration value="App-Dating" />
+            <xsd:enumeration value="App-Education" />
+            <xsd:enumeration value="App-Entertainment" />
+            <xsd:enumeration value="App-Events" />
+            <xsd:enumeration value="App-Finance" />
+            <xsd:enumeration value="App-Food &amp; Drink" />
+            <xsd:enumeration value="App-Health &amp; Fitness" />
+            <xsd:enumeration value="App-House &amp; Home" />
+            <xsd:enumeration value="App-Libraries &amp; Demo" />
+            <xsd:enumeration value="App-Lifestyle" />
+            <xsd:enumeration value="App-Maps &amp; Navigation" />
+            <xsd:enumeration value="App-Medical" />
+            <xsd:enumeration value="App-Music &amp; Audio" />
+            <xsd:enumeration value="App-News &amp; Magazines" />
+            <xsd:enumeration value="App-Parenting" />
+            <xsd:enumeration value="App-Personalization" />
+            <xsd:enumeration value="App-Photography" />
+            <xsd:enumeration value="App-Productivity" />
+            <xsd:enumeration value="App-Shopping" />
+            <xsd:enumeration value="App-Social" />
+            <xsd:enumeration value="App-Sport" />
+            <xsd:enumeration value="App-Tools" />
+            <xsd:enumeration value="App-Travel &amp; Local" />
+            <xsd:enumeration value="App-Video Players &amp; Editors" />
+            <xsd:enumeration value="App-Weather" />
+            <xsd:enumeration value="Game-Action" />
+            <xsd:enumeration value="Game-Adventure" />
+            <xsd:enumeration value="Game-Arcade" />
+            <xsd:enumeration value="Game-Board" />
+            <xsd:enumeration value="Game-Card" />
+            <xsd:enumeration value="Game-Casino" />
+            <xsd:enumeration value="Game-Casual" />
+            <xsd:enumeration value="Game-Educational" />
+            <xsd:enumeration value="Game-Music" />
+            <xsd:enumeration value="Game-Puzzle" />
+            <xsd:enumeration value="Game-Racing" />
+            <xsd:enumeration value="Game-Role Playing" />
+            <xsd:enumeration value="Game-Simulation" />
+            <xsd:enumeration value="Game-Sports" />
+            <xsd:enumeration value="Game-Strategy" />
+            <xsd:enumeration value="Game-Trivia" />
+            <xsd:enumeration value="Game-Word" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="apkList">
+        <xsd:sequence>
+            <xsd:element name="apk" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <!-- The description for device filter condition -->
+                        <xsd:element name="deviceFilterDesc" type="xsd:string" />
+                        <xsd:element name="versionCode" type="xsd:long" />
+                        <xsd:element name="channelApkFile" minOccurs="0" maxOccurs="unbounded">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="forAADP" type="AADP" />
+                                    <xsd:element name="apkFile" type="xsd:anyURI" />
+                                    <xsd:element name="apkHash" type="xsd:string" />
+                                    <xsd:element name="apkSize" type="xsd:int" />
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="AADP">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="COMMON" />
+            <xsd:enumeration value="GOOGLE" />
+            <xsd:enumeration value="XIAOMI" />
+            <xsd:enumeration value="OPPO" />
+            <xsd:enumeration value="VIVO" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+</xsd:schema>
